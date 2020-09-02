@@ -1,7 +1,8 @@
-import { EllipsisOutlined } from '@ant-design/icons';
-import { Col, Dropdown, Menu, Row } from 'antd';
+import { EllipsisOutlined, DownloadOutlined } from '@ant-design/icons';
+import { Col, Dropdown, Menu, Row, Progress } from 'antd';
 import React, { Component, Suspense } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
+import { Pie } from 'ant-design-pro/lib/Charts';
 import { connect } from 'umi';
 import PageLoading from './components/PageLoading';
 import { getTimeDistance } from './utils/utils';
@@ -11,6 +12,12 @@ const SalesCard = React.lazy(() => import('./components/SalesCard'));
 const TopSearch = React.lazy(() => import('./components/TopSearch'));
 const ProportionSales = React.lazy(() => import('./components/ProportionSales'));
 const OfflineData = React.lazy(() => import('./components/OfflineData'));
+
+// custome images
+import transactionsImg from '../analysis/image/female.png';
+
+// payment images
+import visaCardImg from '../analysis/image/visa-card.png';
 
 class Analysis extends Component {
   state = {
@@ -119,7 +126,7 @@ class Analysis extends Component {
     const menu = (
       <Menu>
         <Menu.Item>操作一</Menu.Item>
-        <Menu.Item>操作二</Menu.Item>
+        <Menu.Item>DesB</Menu.Item>
       </Menu>
     );
     const dropdownGroup = (
@@ -132,58 +139,69 @@ class Analysis extends Component {
     const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
     return (
       <GridContent>
-        <React.Fragment>
-          <Suspense fallback={<PageLoading />}>
-            <IntroduceRow loading={loading} visitData={visitData} />
-          </Suspense>
-          <Suspense fallback={null}>
-            <SalesCard
-              rangePickerValue={rangePickerValue}
-              salesData={salesData}
-              isActive={this.isActive}
-              handleRangePickerChange={this.handleRangePickerChange}
-              loading={loading}
-              selectDate={this.selectDate}
-            />
-          </Suspense>
-          <Row
-            gutter={24}
-            style={{
-              marginTop: 24,
-            }}
-          >
-            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <Suspense fallback={null}>
-                <TopSearch
-                  loading={loading}
-                  visitData2={visitData2}
-                  searchData={searchData}
-                  dropdownGroup={dropdownGroup}
-                />
-              </Suspense>
+        {/* Custom design */}
+        <div>
+          <Row>
+            <Col className={styles.sectionOne} span={12}>
+              <Row style={{ padding: '20px' }}>
+                <Col span={12}>Latest Transactions</Col>
+                <Col span={12} style={{ float: 'right' }}></Col>
+                {/* <Col span={12}>Hello</Col> */}
+              </Row>
+              <div>
+                <img src={transactionsImg} alt="" className={styles.imgStyle} />
+                <h2 style={{ textAlign: 'center' }}>Your transactions will appear here</h2>
+              </div>
             </Col>
-            <Col xl={12} lg={24} md={24} sm={24} xs={24}>
-              <Suspense fallback={null}>
-                <ProportionSales
-                  dropdownGroup={dropdownGroup}
-                  salesType={salesType}
-                  loading={loading}
-                  salesPieData={salesPieData}
-                  handleChangeSalesType={this.handleChangeSalesType}
-                />
-              </Suspense>
+            {/* Section two */}
+            <Col span={12}>
+              <Row style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Col span={12} className={styles.sectionTwo}>
+                  <h4 className={styles.textStyle}>Account</h4>
+                  <div style={{ textAlign: 'center' }}>
+                    <Pie percent={68} subTitle="Total" total="68%" height={140} color="#ffab2b" />
+                  </div>
+                  <h4 className={styles.textStyle} style={{ textAlign: 'center' }}>
+                    VISA CARD *** 575675
+                  </h4>
+                  <div className={styles.containerStyle} style={{ flexDirection: 'row' }}>
+                    <h4 className={styles.textStyle}>Download Statement</h4>
+                    <a href="#">
+                      <i className={styles.textStyle} style={{ fontSize: '20px' }}>
+                        <DownloadOutlined />
+                      </i>
+                    </a>
+                  </div>
+                </Col>
+                <Col span={12} className={styles.sectionTwo}>
+                  <h4 className={styles.textStyle}>Spendings</h4>
+                </Col>
+              </Row>
+              <Col
+                span={24}
+                className={styles.sectionTwo}
+                style={{ margin: '5px', height: '50vh' }}
+              >
+                <h4 className={styles.textStyle}>Available balance</h4>
+                <hr className={styles.dividerStyle} />
+                <div className={styles.paymentContainer}>
+                  <div className={styles.paymentContainer}>
+                    <img src={visaCardImg} alt="" />
+                    <div style={{ marginLeft: '10px' }}>
+                      <h3>1213323***8223</h3>
+                      <p>Card number</p>
+                    </div>
+                  </div>
+                  {/* price */}
+                  <div>
+                    <h3>$88.20</h3>
+                    <p>Balance</p>
+                  </div>
+                </div>
+              </Col>
             </Col>
           </Row>
-          <Suspense fallback={null}>
-            <OfflineData
-              activeKey={activeKey}
-              loading={loading}
-              offlineData={offlineData}
-              offlineChartData={offlineChartData}
-              handleTabChange={this.handleTabChange}
-            />
-          </Suspense>
-        </React.Fragment>
+        </div>
       </GridContent>
     );
   }
