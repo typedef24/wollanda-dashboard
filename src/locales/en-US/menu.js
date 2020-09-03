@@ -7,7 +7,7 @@ export default {
   'menu.login': 'Login',
   'menu.register': 'Register',
   'menu.register.result': 'Register Result',
-  'menu.dashboard': 'Dashboard',
+  // 'menu.dashboard': 'Dashboard',
   'menu.dashboard.analysis': 'Analysis',
   'menu.dashboard.monitor': 'Monitor',
   'menu.dashboard.workplace': 'Workplace',
@@ -49,4 +49,9 @@ export default {
   'menu.editor.flow': 'Flow Editor',
   'menu.editor.mind': 'Mind Editor',
   'menu.editor.koni': 'Koni Editor',
+
+  // main locales
+  'menu.dashboard': 'Dashboard',
+  'menu.customers': 'Customers',
+  'menu.transactions': 'Transactions',
 };

@@ -67,33 +67,70 @@ export default defineConfig({
           routes: [
             {
               path: '/',
-              redirect: '/dashboard/analysis',
+              // redirect: '/dashboard/analysis',
+              redirect: '/dashboard',
             },
+
+            // Main routes for the project
             {
               path: '/dashboard',
               name: 'dashboard',
               icon: 'dashboard',
-              routes: [
-                {
-                  name: 'analysis',
-                  icon: 'smile',
-                  path: '/dashboard/analysis',
-                  component: './dashboard/analysis',
-                },
-                {
-                  name: 'monitor',
-                  icon: 'smile',
-                  path: '/dashboard/monitor',
-                  component: './dashboard/monitor',
-                },
-                {
-                  name: 'workplace',
-                  icon: 'smile',
-                  path: '/dashboard/workplace',
-                  component: './dashboard/workplace',
-                },
-              ],
+              component: './dashboard',
             },
+            {
+              path: '/customers',
+              name: 'customers',
+              icon: 'team',
+              component: './customers',
+            },
+            {
+              path: '/transactions',
+              name: 'transactions',
+              icon: '',
+              component: './transactions',
+            },
+
+            // {
+            //   path: '/pageone',
+            //   name: 'pageone',
+            //   icon: 'profile',
+            //   component: './pageone',
+            //   // routes: [
+            //   //   {
+            //   //     name: 'new-page',
+            //   //     icon: 'smile',
+            //   //     path: '/pageone/new-page',
+            //   //     component: './pageone/new-page',
+            //   //   },
+            //   // ],
+            // },
+
+            // {
+            //   path: '/dashboard',
+            //   name: 'dashboard',
+            //   icon: 'dashboard',
+            //   routes: [
+            //     {
+            //       name: 'analysis',
+            //       icon: 'smile',
+            //       path: '/dashboard/analysis',
+            //       component: './dashboard/analysis',
+            //     },
+            //     {
+            //       name: 'monitor',
+            //       icon: 'smile',
+            //       path: '/dashboard/monitor',
+            //       component: './dashboard/monitor',
+            //     },
+            //     {
+            //       name: 'workplace',
+            //       icon: 'smile',
+            //       path: '/dashboard/workplace',
+            //       component: './dashboard/workplace',
+            //     },
+            //   ],
+            // },
             {
               path: '/form',
               icon: 'form',

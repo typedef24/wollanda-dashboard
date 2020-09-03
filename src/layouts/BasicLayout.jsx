@@ -39,11 +39,11 @@ const menuDataRender = (menuList) =>
 
 const defaultFooterDom = (
   <DefaultFooter
-    copyright={`${new Date().getFullYear()} XEOPAY`}
+    copyright={`${new Date().getFullYear()} XOEPAY`}
     links={[
       {
-        key: 'XEOPAY',
-        title: 'XEOPAY',
+        key: 'XOEPAY',
+        title: 'XOEPAY',
         href: 'https://pro.ant.design',
         blankTarget: true,
       },

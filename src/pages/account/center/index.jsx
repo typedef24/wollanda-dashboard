@@ -12,7 +12,7 @@ const operationTabList = [
     key: 'articles',
     tab: (
       <span>
-        文章{' '}
+        article{' '}
         <span
           style={{
             fontSize: 14,
@@ -27,7 +27,7 @@ const operationTabList = [
     key: 'applications',
     tab: (
       <span>
-        应用{' '}
+        application{' '}
         <span
           style={{
             fontSize: 14,
@@ -42,7 +42,7 @@ const operationTabList = [
     key: 'projects',
     tab: (
       <span>
-        项目{' '}
+        project{' '}
         <span
           style={{
             fontSize: 14,
@@ -94,7 +94,7 @@ const TagList = ({ tags }) => {
 
   return (
     <div className={styles.tags}>
-      <div className={styles.tagsTitle}>标签</div>
+      <div className={styles.tagsTitle}>label</div>
       {(tags || []).concat(newTags).map((item) => (
         <Tag key={item.key}>{item.label}</Tag>
       ))}
