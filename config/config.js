@@ -90,6 +90,12 @@ export default defineConfig({
               icon: '',
               component: './transactions',
             },
+            {
+              path: '/settings',
+              name: 'setting',
+              icon: 'setting',
+              component: './setting',
+            },
 
             // {
             //   path: '/pageone',
