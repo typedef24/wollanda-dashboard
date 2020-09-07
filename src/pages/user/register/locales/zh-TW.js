@@ -1,5 +1,7 @@
 export default {
   'userandregister.login.userName': '賬戶',
+  'userandregister.name.required': 'Please enter your full name',
+  'userandregister.name.placeholder': "Full name",
   'userandregister.login.password': '密碼',
   'userandregister.login.message-invalid-credentials': '賬戶或密碼錯誤（admin/ant.design）',
   'userandregister.login.message-invalid-verification-code': '驗證碼錯誤',

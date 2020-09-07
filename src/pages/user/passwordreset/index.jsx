@@ -20,15 +20,15 @@ const LoginMessage = ({ content }) => (
 );
 
 const Login = (props) => {
-  const { userAndlogin = {}, submitting } = props;
-  const { status, type: loginType } = userAndlogin;
+  const { userAndpasswordreset = {}, submitting } = props;
+  const { status, type: loginType } = userAndpasswordreset;
   const [autoLogin, setAutoLogin] = useState(true);
   const [type, setType] = useState('account');
 
   const handleSubmit = (values) => {
     const { dispatch } = props;
     dispatch({
-      type: 'userAndlogin/login',
+      type: 'userAndpasswordreset/login',
       payload: { ...values, type },
     });
   };
@@ -50,52 +50,31 @@ const Login = (props) => {
                 <br />
                 <br />
                 <div className={styles.other}>
-                  <h1 className={styles.siteColor}>Sign in</h1>
+                  <h1 className={styles.siteColor}>Recover password</h1>
                   <p>
-                    Please sign in to your personal account if you want to use all our premium
-                    products.
+                    Enter the email address associated with your account so we can help you recover
+                    your password.
                   </p>
                 </div>
                 {status === 'error' && loginType === 'account' && !submitting && (
-                  <LoginMessage content="Incorrect account or password" />
+                  <LoginMessage content='No account with email "youremail@host.com" on our system!' />
                 )}
 
-                <p>Your email</p>
                 <UserName
-                  name="userName"
+                  name="email"
                   placeholder="Enter your email"
                   rules={[
                     {
                       required: true,
-                      message: 'Email or username required!',
+                      message: 'Email is required!',
                     },
                   ]}
                 />
-                <p>Password</p>
-                <Password
-                  name="password"
-                  placeholder="Enter your password"
-                  rules={[
-                    {
-                      required: true,
-                      message: 'Password required!',
-                    },
-                  ]}
-                />
-                <div className={styles.other}>
-                  <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
-                    Remember me
-                  </Checkbox>
-                  <Link className={styles.register} to="/user/passwordreset">
-                    Forgot your password?
-                  </Link>
-                </div>
-                {/* <Submit loading={submitting}>SIGN IN</Submit> */}
-                <Link to="/user/create-account">SIGN IN</Link>
+                <Submit loading={submitting}>SEND PASSWORD RECOVERY LINK</Submit>
                 <br />
                 <br />
                 <div className={styles.other}>
-                  Don't have an account?
+                  Don't have an account?{' '}
                   <Link className={styles.siteColor} to="/user/register">
                     Sign up here
                   </Link>
@@ -115,7 +94,7 @@ const Login = (props) => {
   );
 };
 
-export default connect(({ userAndlogin, loading }) => ({
-  userAndlogin,
-  submitting: loading.effects['userAndlogin/login'],
+export default connect(({ userAndpasswordreset, loading }) => ({
+  userAndpasswordreset,
+  submitting: loading.effects['userAndpasswordreset/login'],
 }))(Login);

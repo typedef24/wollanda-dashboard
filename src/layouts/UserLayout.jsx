@@ -38,7 +38,7 @@ const UserLayout = (props) => {
           <SelectLang />
         </div>
         <div className={styles.content}>
-          <div className={styles.top}>
+          {/* <div className={styles.top}>
             <div className={styles.header}>
               <Link to="/">
                 <img alt="logo" className={styles.logo} src={logo} />
@@ -46,10 +46,10 @@ const UserLayout = (props) => {
               </Link>
             </div>
             <div className={styles.desc}>XEOPAY Web</div>
-          </div>
-          {/* {children} */}
+          </div> */}
+          {children}
         </div>
-        <DefaultFooter />
+        {/* <DefaultFooter /> */}
       </div>
     </HelmetProvider>
   );
