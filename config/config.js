@@ -43,6 +43,18 @@ export default defineConfig({
               component: './user/login',
             },
             {
+              name: 'passwordreset',
+              icon: 'smile',
+              path: '/user/passwordreset',
+              component: './user/passwordreset',
+            },
+            {
+              name: 'create-account',
+              icon: 'smile',
+              path: '/user/create-account',
+              component: './user/create-account',
+            },
+            {
               name: 'register-result',
               icon: 'smile',
               path: '/user/register-result',

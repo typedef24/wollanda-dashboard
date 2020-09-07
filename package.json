@@ -25,7 +25,6 @@
     "test:component": "umi test ./src/components",
     "tsc": "tsc"
   },
-  
   "browserslist": [
     "> 1%",
     "last 2 versions",
