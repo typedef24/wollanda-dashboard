@@ -1,7 +1,12 @@
-import { Form, Button, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
+import { Form, Checkbox, Col, Input, Popover, Progress, Row, Select, message } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { Link, connect, history, FormattedMessage, formatMessage } from 'umi';
+import { GridContent } from '@ant-design/pro-layout';
 import styles from './style.less';
+import logo from '../../../../public/logo.jpeg';
+import loginPageImage from '../../../../public/loginPageImage.jpeg';
+import LoginFrom from '../login/components/Login';
+const { Submit } = LoginFrom;
 const FormItem = Form.Item;
 const { Option } = Select;
 const InputGroup = Input.Group;
@@ -33,6 +38,7 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
   const [visible, setvisible] = useState(false);
   const [prefix, setprefix] = useState('86');
   const [popover, setpopover] = useState(false);
+  const [autoLogin, setAutoLogin] = useState(true);
   const confirmDirty = false;
   let interval;
   const [form] = Form.useForm();
@@ -159,202 +165,182 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
 
   return (
     <div className={styles.main}>
-      <h3>
-        <FormattedMessage id="userandregister.register.register" />
-      </h3>
-      <Form form={form} name="UserRegister" onFinish={onFinish}>
-        <FormItem
-          name="mail"
-          rules={[
-            {
-              required: true,
-              message: formatMessage({
-                id: 'userandregister.email.required',
-              }),
-            },
-            {
-              type: 'email',
-              message: formatMessage({
-                id: 'userandregister.email.wrong-format',
-              }),
-            },
-          ]}
-        >
-          <Input
-            size="large"
-            placeholder={formatMessage({
-              id: 'userandregister.email.placeholder',
-            })}
-          />
-        </FormItem>
-        <Popover
-          getPopupContainer={(node) => {
-            if (node && node.parentNode) {
-              return node.parentNode;
-            }
-
-            return node;
-          }}
-          content={
-            visible && (
-              <div
-                style={{
-                  padding: '4px 0',
-                }}
-              >
-                {passwordStatusMap[getPasswordStatus()]}
-                {renderPasswordProgress()}
-                <div
-                  style={{
-                    marginTop: 10,
-                  }}
-                >
-                  <FormattedMessage id="userandregister.strength.msg" />
-                </div>
+      <GridContent>
+        <React.Fragment>
+          <Row>
+            <Col
+              xs={{ span: 24 }}
+              md={{ span: 5, offset: 6 }}
+              style={{
+                marginBottom: 30,
+              }}
+            >
+              <img src={logo} style={{ width: '100px' }} />
+              <br />
+              <br />
+              <div className={styles.other}>
+                <h1 className={styles.siteColor}>Create account</h1>
+                <p>
+                  Please sign up to your personal account if you want to use all our premium
+                  products.
+                </p>
               </div>
-            )
-          }
-          overlayStyle={{
-            width: 240,
-          }}
-          placement="right"
-          visible={visible}
-        >
-          <FormItem
-            name="password"
-            className={
-              form.getFieldValue('password') &&
-              form.getFieldValue('password').length > 0 &&
-              styles.password
-            }
-            rules={[
-              {
-                validator: checkPassword,
-              },
-            ]}
-          >
-            <Input
-              size="large"
-              type="password"
-              placeholder={formatMessage({
-                id: 'userandregister.password.placeholder',
-              })}
-            />
-          </FormItem>
-        </Popover>
-        <FormItem
-          name="confirm"
-          rules={[
-            {
-              required: true,
-              message: formatMessage({
-                id: 'userandregister.confirm-password.required',
-              }),
-            },
-            {
-              validator: checkConfirm,
-            },
-          ]}
-        >
-          <Input
-            size="large"
-            type="password"
-            placeholder={formatMessage({
-              id: 'userandregister.confirm-password.placeholder',
-            })}
-          />
-        </FormItem>
-        <InputGroup compact>
-          <Select
-            size="large"
-            value={prefix}
-            onChange={changePrefix}
-            style={{
-              width: '20%',
-            }}
-          >
-            <Option value="86">+86</Option>
-            <Option value="87">+87</Option>
-          </Select>
-          <FormItem
-            style={{
-              width: '80%',
-            }}
-            name="mobile"
-            rules={[
-              {
-                required: true,
-                message: formatMessage({
-                  id: 'userandregister.phone-number.required',
-                }),
-              },
-              {
-                pattern: /^\d{11}$/,
-                message: formatMessage({
-                  id: 'userandregister.phone-number.wrong-format',
-                }),
-              },
-            ]}
-          >
-            <Input
-              size="large"
-              placeholder={formatMessage({
-                id: 'userandregister.phone-number.placeholder',
-              })}
-            />
-          </FormItem>
-        </InputGroup>
-        <Row gutter={8}>
-          <Col span={16}>
-            <FormItem
-              name="captcha"
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({
-                    id: 'userandregister.verification-code.required',
-                  }),
-                },
-              ]}
-            >
-              <Input
-                size="large"
-                placeholder={formatMessage({
-                  id: 'userandregister.verification-code.placeholder',
-                })}
-              />
-            </FormItem>
-          </Col>
-          <Col span={8}>
-            <Button
-              size="large"
-              disabled={!!count}
-              className={styles.getCaptcha}
-              onClick={onGetCaptcha}
-            >
-              {count
-                ? `${count} s`
-                : formatMessage({
-                    id: 'userandregister.register.get-verification-code',
-                  })}
-            </Button>
-          </Col>
-        </Row>
-        <FormItem>
-          <Button
-            size="large"
-            loading={submitting}
-            className={styles.submit}
-            type="primary"
-            htmlType="submit"
-          >
+
+              {/* <h3>
             <FormattedMessage id="userandregister.register.register" />
-          </Button>
-          <Link className={styles.login} to="/user/login">
-            <FormattedMessage id="userandregister.register.sign-in" />
-          </Link>
-        </FormItem>
-      </Form>
+          </h3> */}
+              <Form form={form} name="UserRegister" onFinish={onFinish}>
+                <p>Full name</p>
+                <FormItem
+                  name="name"
+                  rules={[
+                    {
+                      required: true,
+                      message: formatMessage({
+                        id: 'userandregister.name.required',
+                      }),
+                    },
+                  ]}
+                >
+                  <Input
+                    size="large"
+                    placeholder={formatMessage({
+                      id: 'userandregister.name.placeholder',
+                    })}
+                  />
+                </FormItem>
+                <p>Your email</p>
+                <FormItem
+                  name="mail"
+                  rules={[
+                    {
+                      required: true,
+                      message: formatMessage({
+                        id: 'userandregister.email.required',
+                      }),
+                    },
+                    {
+                      type: 'email',
+                      message: formatMessage({
+                        id: 'userandregister.email.wrong-format',
+                      }),
+                    },
+                  ]}
+                >
+                  <Input
+                    size="large"
+                    placeholder={formatMessage({
+                      id: 'userandregister.email.placeholder',
+                    })}
+                  />
+                </FormItem>
+                <Popover
+                  getPopupContainer={(node) => {
+                    if (node && node.parentNode) {
+                      return node.parentNode;
+                    }
+
+                    return node;
+                  }}
+                  content={
+                    visible && (
+                      <div
+                        style={{
+                          padding: '4px 0',
+                        }}
+                      >
+                        {passwordStatusMap[getPasswordStatus()]}
+                        {renderPasswordProgress()}
+                        <div
+                          style={{
+                            marginTop: 10,
+                          }}
+                        >
+                          <FormattedMessage id="userandregister.strength.msg" />
+                        </div>
+                      </div>
+                    )
+                  }
+                  overlayStyle={{
+                    width: 240,
+                  }}
+                  placement="right"
+                  visible={visible}
+                >
+                  <p>Password</p>
+                  <FormItem
+                    name="password"
+                    className={
+                      form.getFieldValue('password') &&
+                      form.getFieldValue('password').length > 0 &&
+                      styles.password
+                    }
+                    rules={[
+                      {
+                        validator: checkPassword,
+                      },
+                    ]}
+                  >
+                    <Input
+                      size="large"
+                      type="password"
+                      placeholder={formatMessage({
+                        id: 'userandregister.password.placeholder',
+                      })}
+                    />
+                  </FormItem>
+                </Popover>
+                <p>Confirm your password</p>
+                <FormItem
+                  name="confirm"
+                  rules={[
+                    {
+                      required: true,
+                      message: formatMessage({
+                        id: 'userandregister.confirm-password.required',
+                      }),
+                    },
+                    {
+                      validator: checkConfirm,
+                    },
+                  ]}
+                >
+                  <Input
+                    size="large"
+                    type="password"
+                    placeholder={formatMessage({
+                      id: 'userandregister.confirm-password.placeholder',
+                    })}
+                  />
+                </FormItem>
+                <FormItem>
+                  <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
+                    I agree with terms and conditions of service
+                  </Checkbox>
+                </FormItem>
+                <FormItem>
+                  <Submit loading={submitting}>
+                    <FormattedMessage id="userandregister.register.register" />
+                  </Submit>
+                </FormItem>
+                <br />
+                <FormItem>
+                  Already have an account?{' '}
+                  <Link className={styles.siteColor} to="/user/login">
+                    Sign in here
+                  </Link>
+                </FormItem>
+              </Form>
+            </Col>
+            <Col xs={{ span: 24 }} md={{ span: 9, offset: 2 }}>
+              <img
+                src={loginPageImage}
+                style={{ width: '100%', height: 'auto', minHeight: '75vh' }}
+              />
+            </Col>
+          </Row>
+        </React.Fragment>
+      </GridContent>
     </div>
   );
 };

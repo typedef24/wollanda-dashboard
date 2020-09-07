@@ -1,10 +1,12 @@
-import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
-import { Alert, Checkbox } from 'antd';
+import { Alert, Checkbox, Row, Col } from 'antd';
 import React, { useState } from 'react';
+import { GridContent } from '@ant-design/pro-layout';
 import { Link, connect } from 'umi';
 import styles from './style.less';
 import LoginFrom from './components/Login';
-const { Tab, UserName, Password, Mobile, Captcha, Submit } = LoginFrom;
+import logo from '../../../../public/logo.jpeg';
+import loginPageImage from '../../../../public/loginPageImage.jpeg';
+const { UserName, Password, Submit } = LoginFrom;
 
 const LoginMessage = ({ content }) => (
   <Alert
@@ -33,88 +35,82 @@ const Login = (props) => {
 
   return (
     <div className={styles.main}>
-      <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
-        <Tab key="account" tab="账户密码登录">
-          {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
-          )}
+      <GridContent>
+        <React.Fragment>
+          <Row>
+            <Col
+              xs={{ span: 24 }}
+              md={{ span: 5, offset: 6 }}
+              style={{
+                marginBottom: 30,
+              }}
+            >
+              <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
+                <img src={logo} style={{ width: '100px' }} />
+                <br />
+                <br />
+                <div className={styles.other}>
+                  <h1 className={styles.siteColor}>Sign in</h1>
+                  <p>
+                    Please sign in to your personal account if you want to use all our premium
+                    products.
+                  </p>
+                </div>
+                {status === 'error' && loginType === 'account' && !submitting && (
+                  <LoginMessage content="Incorrect account or password" />
+                )}
 
-          <UserName
-            name="userName"
-            placeholder="用户名: admin or user"
-            rules={[
-              {
-                required: true,
-                message: '请输入用户名!',
-              },
-            ]}
-          />
-          <Password
-            name="password"
-            placeholder="密码: ant.design"
-            rules={[
-              {
-                required: true,
-                message: '请输入密码！',
-              },
-            ]}
-          />
-        </Tab>
-        <Tab key="mobile" tab="手机号登录">
-          {status === 'error' && loginType === 'mobile' && !submitting && (
-            <LoginMessage content="验证码错误" />
-          )}
-          <Mobile
-            name="mobile"
-            placeholder="手机号"
-            rules={[
-              {
-                required: true,
-                message: '请输入手机号！',
-              },
-              {
-                pattern: /^1\d{10}$/,
-                message: '手机号格式错误！',
-              },
-            ]}
-          />
-          <Captcha
-            name="captcha"
-            placeholder="验证码"
-            countDown={120}
-            getCaptchaButtonText=""
-            getCaptchaSecondText="秒"
-            rules={[
-              {
-                required: true,
-                message: '请输入验证码！',
-              },
-            ]}
-          />
-        </Tab>
-        <div>
-          <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
-            自动登录
-          </Checkbox>
-          <a
-            style={{
-              float: 'right',
-            }}
-          >
-            忘记密码
-          </a>
-        </div>
-        <Submit loading={submitting}>登录</Submit>
-        <div className={styles.other}>
-          其他登录方式
-          <AlipayCircleOutlined className={styles.icon} />
-          <TaobaoCircleOutlined className={styles.icon} />
-          <WeiboCircleOutlined className={styles.icon} />
-          <Link className={styles.register} to="/user/register">
-            注册账户
-          </Link>
-        </div>
-      </LoginFrom>
+                <p>Your email</p>
+                <UserName
+                  name="userName"
+                  placeholder="Enter your email"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Email or username required!',
+                    },
+                  ]}
+                />
+                <p>Password</p>
+                <Password
+                  name="password"
+                  placeholder="Enter your password"
+                  rules={[
+                    {
+                      required: true,
+                      message: 'Password required!',
+                    },
+                  ]}
+                />
+                <div className={styles.other}>
+                  <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
+                    Remember me
+                  </Checkbox>
+                  <Link className={styles.register} to="/user/passwordreset">
+                    Forgot your password?
+                  </Link>
+                </div>
+                {/* <Submit loading={submitting}>SIGN IN</Submit> */}
+                <Link to="/user/create-account">SIGN IN</Link>
+                <br />
+                <br />
+                <div className={styles.other}>
+                  Don't have an account?
+                  <Link className={styles.siteColor} to="/user/register">
+                    Sign up here
+                  </Link>
+                </div>
+              </LoginFrom>
+            </Col>
+            <Col xs={{ span: 24 }} md={{ span: 9, offset: 2 }}>
+              <img
+                src={loginPageImage}
+                style={{ width: '100%', height: 'auto', minHeight: '75vh' }}
+              />
+            </Col>
+          </Row>
+        </React.Fragment>
+      </GridContent>
     </div>
   );
 };
