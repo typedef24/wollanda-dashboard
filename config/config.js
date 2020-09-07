@@ -87,8 +87,20 @@ export default defineConfig({
             {
               path: '/transactions',
               name: 'transactions',
-              icon: '',
+              icon: 'ExpandAlt',
               component: './transactions',
+            },
+            {
+              path: '/settings',
+              name: 'setting',
+              icon: 'setting',
+              component: './setting',
+            },
+            {
+              path: '/reports',
+              name: 'reports',
+              icon: 'BarChart',
+              component: './reports',
             },
 
             // {

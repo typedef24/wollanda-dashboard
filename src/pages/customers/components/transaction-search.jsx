@@ -30,19 +30,19 @@ function TransactionSearch() {
 
   return (
     <div>
-      <Card title="Transactions" bordered={false}>
+      <Card title="Transactions" bordered={false} style={{ height: '115vh' }}>
         {data.map((item, index) => (
           <div style={{ paddingTop: '10px', paddingBottom: '10px' }}>
             <div className={styles.transactionContainer}>
               <div className={styles.containerStyle}>
                 <img src={image1} alt="" className={styles.imgStyle} />
                 <div style={{ paddingLeft: '10px' }}>
-                  <h3>{item.name}</h3>
+                  <h3 className={styles.boldText}>{item.name}</h3>
                   <p>{item.companyName}</p>
                 </div>
               </div>
               <div>
-                <h4>${item.balance}</h4>
+                <h4 className={styles.boldText}>${item.balance}</h4>
                 <p>4 Aug 1:00 PM</p>
               </div>
             </div>

@@ -7,6 +7,7 @@ import SpendingPreview from './components/spendings-preview';
 import { GridContent } from '@ant-design/pro-layout';
 import { Row, Col, Card } from 'antd';
 import AvailiableBalance from './components/availiable-balance';
+import NoTransactionPreview from './components/no-transaction-preview';
 
 function Dashboard() {
   return (
@@ -78,6 +79,7 @@ function Dashboard() {
             </Col>
           </Col>
         </Row>
+        {/* <NoTransactionPreview /> */}
       </React.Fragment>
     </GridContent>
   );

@@ -54,4 +54,6 @@ export default {
   'menu.dashboard': 'Dashboard',
   'menu.customers': 'Customers',
   'menu.transactions': 'Transactions',
+  'menu.setting': 'Settings',
+  'menu.reports': 'Report',
 };

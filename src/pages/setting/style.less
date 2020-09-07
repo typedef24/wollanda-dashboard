@@ -1,0 +1,96 @@
+@import '~antd/es/style/themes/default.less';
+
+// image upload
+.uploadContainer {
+  border: 1px solid;
+  border-color: #f4f4f4;
+  padding: 10px;
+}
+
+.avatarUploader > .ant-upload {
+  width: 138px;
+  height: 128px;
+}
+
+.inputContainer {
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.inputContainerTwo {
+  margin-bottom: 5px;
+}
+
+.btnContainer {
+  margin-top: 30vh;
+}
+
+.verticalLine {
+  display: inline-block;
+  border-left: 1px solid #ccc;
+  margin: 0 10px;
+  height: 80vh;
+  margin-left: 70px;
+}
+.cardContainer {
+  height: 90vh;
+}
+
+.dividerStyle {
+  height: 1px;
+  border-width: 0;
+  color: #f0f2f5;
+  background-color: #f0f2f5;
+}
+
+// Payment limits
+.transactionStyle {
+  color: #b1becd;
+}
+.progressContainer {
+  padding: 5px 15px 5px 15px;
+  background-color: #f8fafb;
+}
+
+.spendingStyle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+// Notification
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.textStyle {
+  font-weight: bold;
+  color: #5b5c64;
+}
+
+// Media query for responsive design
+@media screen and (max-width: @screen-lg) {
+  .btnContainer {
+    margin-top: 30px;
+  }
+}
+@media screen and (max-width: @screen-md) {
+  .btnContainer {
+    margin-top: 0px;
+  }
+
+  .verticalLine {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: @screen-sm) {
+  .btnContainer {
+    margin-top: 0px;
+  }
+  .verticalLine {
+    display: none !important;
+  }
+}

@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-
-import styles from './style.less';
 import { GridContent } from '@ant-design/pro-layout';
 import { Row, Col } from 'antd';
-import TransactionSearch from './components/transaction-search';
-import DateTransaction from './components/date-transaction';
+import Account from './components/account';
 
 function Transactions() {
   return (
@@ -21,7 +18,7 @@ function Transactions() {
               marginBottom: 24,
             }}
           >
-            <TransactionSearch />
+            <Account />
           </Col>
           <Col
             xl={9}
@@ -33,7 +30,7 @@ function Transactions() {
               marginBottom: 24,
             }}
           >
-            <DateTransaction />
+            <h1>Hello</h1>
           </Col>
         </Row>
       </React.Fragment>
