@@ -26,11 +26,13 @@ const Login = (props) => {
   const [type, setType] = useState('account');
 
   const handleSubmit = (values) => {
+    values.autoLogin = autoLogin;
     const { dispatch } = props;
-    dispatch({
-      type: 'userAndlogin/login',
-      payload: { ...values, type },
-    });
+    alert("Sumitting: " + JSON.stringify(values));
+    // dispatch({
+    //   type: 'userAndlogin/login',
+    //   payload: { ...values, type },
+    // });
   };
 
   return (
@@ -67,9 +69,14 @@ const Login = (props) => {
                   rules={[
                     {
                       required: true,
-                      message: 'Email or username required!',
+                      message: 'Email required!',
+                    },
+                    {
+                      type: 'email',
+                      message: "The email address is in the wrong format!",
                     },
                   ]}
+                  // onChange={(text) => setEmail(text)}
                 />
                 <p>Password</p>
                 <Password
@@ -81,6 +88,7 @@ const Login = (props) => {
                       message: 'Password required!',
                     },
                   ]}
+                  // onChange={(pass) => setPassword(pass)}
                 />
                 <div className={styles.other}>
                   <Checkbox checked={autoLogin} onChange={(e) => setAutoLogin(e.target.checked)}>
@@ -90,8 +98,8 @@ const Login = (props) => {
                     Forgot your password?
                   </Link>
                 </div>
-                {/* <Submit loading={submitting}>SIGN IN</Submit> */}
-                <Link to="/user/create-account">SIGN IN</Link>
+                <Submit loading={submitting}>SIGN IN</Submit>
+                {/* <Link to="/user/create-account">SIGN IN</Link> */}
                 <br />
                 <br />
                 <div className={styles.other}>

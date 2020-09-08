@@ -27,10 +27,11 @@ const Login = (props) => {
 
   const handleSubmit = (values) => {
     const { dispatch } = props;
-    dispatch({
-      type: 'userAndpasswordreset/login',
-      payload: { ...values, type },
-    });
+    alert("Sumitting: " + JSON.stringify(values));
+    // dispatch({
+    //   type: 'userAndpasswordreset/login',
+    //   payload: { ...values, type },
+    // });
   };
 
   return (
@@ -67,6 +68,10 @@ const Login = (props) => {
                     {
                       required: true,
                       message: 'Email is required!',
+                    },
+                    {
+                      type: 'email',
+                      message: "The email address is in the wrong format!",
                     },
                   ]}
                 />

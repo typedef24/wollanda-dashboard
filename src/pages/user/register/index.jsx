@@ -94,10 +94,16 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
   };
 
   const onFinish = (values) => {
-    dispatch({
-      type: 'userAndregister/submit',
-      payload: { ...values, prefix },
-    });
+    //Ensure user checked on the terms and conditions of service
+    if (autoLogin) {
+      alert('Sumitting: ' + JSON.stringify(values));
+      // dispatch({
+      //   type: 'userAndregister/submit',
+      //   payload: { ...values, prefix },
+      // });
+    } else {
+      alert("You must accept our terms and conditions of service to continue!");
+    }
   };
 
   const checkConfirm = (_, value) => {
