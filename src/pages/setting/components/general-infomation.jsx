@@ -62,11 +62,12 @@ function GeneralInformation() {
 
   // Handle setting update
   const handleSubmit = () => {
-    if (!firstName || !lastName || !email || !phoneNumber) {
-      return alert("Field can't be empty");
-    } else {
-      return alert('Submitted');
-    }
+    return alert('Hello');
+    // if (!firstName || !lastName || !email || !phoneNumber) {
+    //   return alert("Field can't be empty");
+    // } else {
+    //   return alert('Submitted');
+    // }
   };
 
   return (
