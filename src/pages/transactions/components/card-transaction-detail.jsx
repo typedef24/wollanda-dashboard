@@ -15,7 +15,9 @@ export default function CardTransactionDetails() {
 
   return (
     <div>
-      {/* <Bar height={200} title="Bar chart" /> */}
+      <div>
+        <h2>Balance</h2>
+      </div>
       <Bar height={300} title="Total Balance" data={salesData} color="#f7902a" />
     </div>
   );

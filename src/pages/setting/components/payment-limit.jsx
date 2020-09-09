@@ -2,6 +2,7 @@ import React from 'react';
 
 // imports
 import { Row, Col, Select, Button, Progress } from 'antd';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Option } from 'antd/lib/mentions';
 
 import Styles from '../style.less';
@@ -112,9 +113,10 @@ export default function PaymentLimit() {
           {/* Button */}
           <div className={Styles.btnContainer}>
             <Button
+              icon={<CheckOutlined />}
               size="large"
               style={{
-                backgroundColor: '#feae33',
+                backgroundColor: '#ffba51',
                 color: '#FFF',
                 border: 'none',
                 marginRight: 5,
@@ -124,6 +126,7 @@ export default function PaymentLimit() {
               UPDATE SETTINGS
             </Button>
             <Button
+              icon={<CloseOutlined />}
               size="large"
               style={{
                 backgroundColor: '#F2F4F6',

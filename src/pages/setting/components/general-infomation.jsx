@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 // imports
 import { Col, Row, Upload, message, Button, Select } from 'antd';
-import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import InputField from './input-field';
 import { Option } from 'antd/lib/mentions';
 
@@ -144,9 +144,10 @@ function GeneralInformation() {
           {/* Button */}
           <div className={Styles.btnContainer}>
             <Button
+              icon={<CheckOutlined />}
               size="large"
               style={{
-                backgroundColor: '#feae33',
+                backgroundColor: '#ffba51',
                 color: '#FFF',
                 border: 'none',
                 marginRight: 5,
@@ -156,6 +157,7 @@ function GeneralInformation() {
               UPDATE SETTINGS
             </Button>
             <Button
+              icon={<CloseOutlined />}
               size="large"
               style={{
                 backgroundColor: '#F2F4F6',

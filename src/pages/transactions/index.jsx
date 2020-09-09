@@ -163,10 +163,10 @@ class Transactions extends Component {
                     <CardTransactionDetails />
                   </TabPane>
                   <TabPane tab="Deposits" key="2">
-                    Content two
+                    <CardTransactionDetails />
                   </TabPane>
                   <TabPane tab="E-wallets" key="3">
-                    Content 3
+                    <CardTransactionDetails />
                   </TabPane>
                 </DraggableTabs>
               </Card>

@@ -2,7 +2,7 @@ import React from 'react';
 
 // imports
 import { Row, Col, Input, Select, Button } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { EyeInvisibleOutlined, EyeTwoTone, CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Option } from 'antd/lib/mentions';
 
 import InputField from './input-field';
@@ -93,9 +93,10 @@ function Security() {
           {/* Button */}
           <div className={Styles.btnContainer}>
             <Button
+              icon={<CheckOutlined />}
               size="large"
               style={{
-                backgroundColor: '#feae33',
+                backgroundColor: '#ffba51',
                 color: '#FFF',
                 border: 'none',
                 marginRight: 5,
@@ -105,6 +106,7 @@ function Security() {
               UPDATE SETTINGS
             </Button>
             <Button
+              icon={<CloseOutlined />}
               size="large"
               style={{
                 backgroundColor: '#F2F4F6',

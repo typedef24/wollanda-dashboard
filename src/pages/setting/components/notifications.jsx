@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
 import { Row, Col, Switch, Button } from 'antd';
 
 import Styles from '../style.less';
@@ -75,9 +76,10 @@ export default function Notifications() {
           {/* Button */}
           <div className={Styles.btnContainer}>
             <Button
+              icon={<CheckOutlined />}
               size="large"
               style={{
-                backgroundColor: '#feae33',
+                backgroundColor: '#ffba51',
                 color: '#FFF',
                 border: 'none',
                 marginRight: 5,
@@ -87,6 +89,7 @@ export default function Notifications() {
               UPDATE SETTINGS
             </Button>
             <Button
+              icon={<CloseOutlined />}
               size="large"
               style={{
                 backgroundColor: '#F2F4F6',
