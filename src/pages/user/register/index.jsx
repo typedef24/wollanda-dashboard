@@ -6,6 +6,8 @@ import styles from './style.less';
 import logo from '../../../../public/logo.jpeg';
 import loginPageImage from '../../../../public/loginPageImage.jpeg';
 import LoginFrom from '../login/components/Login';
+import axios from 'axios';
+import Constants from "../../../../config/Constants";
 const { Submit } = LoginFrom;
 const FormItem = Form.Item;
 const { Option } = Select;
@@ -94,10 +96,31 @@ const Register = ({ submitting, dispatch, userAndregister }) => {
   };
 
   const onFinish = (values) => {
-    dispatch({
-      type: 'userAndregister/submit',
-      payload: { ...values, prefix },
-    });
+    //Ensure user checked on the terms and conditions of service
+    if (autoLogin) {
+      //alert('Sumitting: ' + JSON.stringify(values));
+      axios({
+        method: 'post',
+        url: Constants.apiBaseUrl + '/signup',
+        data: values,
+        //responseType: 'stream'
+      })
+        .then(function (response) {
+          //response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'));
+          console.log('Response => ' + response);
+          alert('Response => ' + response);
+        })
+        .catch(function (error) {
+          console.log("Error: " + error);
+          alert("Error: " + error);
+        });
+      // dispatch({
+      //   type: 'userAndregister/submit',
+      //   payload: { ...values, prefix },
+      // });
+    } else {
+      alert('You must accept our terms and conditions of service to continue!');
+    }
   };
 
   const checkConfirm = (_, value) => {

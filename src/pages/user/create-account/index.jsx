@@ -43,7 +43,7 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [plan, setPlan] = useState('Small Business');
   const [primaryAccount, setPrimaryAccount] = useState('Visa');
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [accountNumber, setAccountNumber] = useState();
   const { Step } = Steps;
   const confirmDirty = false;
   let interval;
@@ -100,10 +100,18 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
   };
 
   const onFinish = (values) => {
-    dispatch({
-      type: 'userAndcreateaccount/submit',
-      payload: { ...values, prefix },
-    });
+    //ensure the form was well filled
+    if (accountNumber) {
+      //show last stage after a successfull process
+      setCurrentStep(3);
+      alert('Sumitting: ' + JSON.stringify(values));
+      // dispatch({
+      //   type: 'userAndcreateaccount/submit',
+      //   payload: { ...values, prefix },
+      // });
+    } else {
+      alert('Please make sure you fill the form correctly!!');
+    }
   };
 
   const checkConfirm = (_, value) => {
@@ -209,6 +217,7 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
                           placeholder={formatMessage({
                             id: 'userAndcreateaccount.accountNumber.placeholder',
                           })}
+                          onChange={(number) => setAccountNumber(number)}
                         />
                       </FormItem>
                       <p>Your email</p>
@@ -427,7 +436,7 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
                             style={
                               plan == 'Individual'
                                 ? { backgroundColor: '#ffab2b', border: '0px' }
-                                : { }
+                                : {}
                             }
                             type={plan == 'Individual' ? 'primary' : 'default'}
                             size="large"
@@ -448,7 +457,7 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
                             style={
                               plan == 'Small Business'
                                 ? { backgroundColor: '#ffab2b', border: '0px' }
-                                : { }
+                                : {}
                             }
                             type={plan == 'Small Business' ? 'primary' : 'default'}
                             size="large"
@@ -469,7 +478,7 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
                             style={
                               plan == 'Corporate'
                                 ? { backgroundColor: '#ffab2b', border: '0px' }
-                                : { }
+                                : {}
                             }
                             type={plan == 'Corporate' ? 'primary' : 'default'}
                             size="large"
@@ -542,9 +551,11 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
                           onClick={() => alert('Going to dashboard')}
                           type="link"
                           style={{ color: '#ffab2b' }}
-                        >
+                        ></Button>
+
+                        <Link type="link" style={{ color: '#ffab2b' }} to="/dashboard">
                           GO TO DASHBOARD
-                        </Button>
+                        </Link>
                       </div>
                     </div>
                   )}
@@ -565,20 +576,13 @@ const Register = ({ submitting, dispatch, userAndcreateaccount }) => {
                           </Button>
                         )}
                         {currentStep == 2 ? (
-                          // <Submit
-                          //   type="link"
-                          //   loading={submitting}
-                          //   style={{ color: '#ffab2b', float: 'right' }}
-                          // >
-                          //   FINISH
-                          // </Submit>
-                          <Button
+                          <Submit
                             type="link"
+                            loading={submitting}
                             style={{ color: '#ffab2b', float: 'right' }}
-                            onClick={() => setCurrentStep(currentStep + 1)}
                           >
                             FINISH
-                          </Button>
+                          </Submit>
                         ) : (
                           <Button
                             type="link"
