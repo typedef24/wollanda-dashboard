@@ -103,6 +103,12 @@ export default defineConfig({
               component: './transactions',
             },
             {
+              path: '/payments',
+              name: 'payments',
+              icon: 'setting',
+              component: './payments',
+            },
+            {
               path: '/settings',
               name: 'setting',
               icon: 'setting',
@@ -113,6 +119,18 @@ export default defineConfig({
               name: 'reports',
               icon: 'BarChart',
               component: './reports',
+            },
+            {
+              path: '/intergrations',
+              name: 'intergration',
+              icon: 'setting',
+              component: './intergrations',
+            },
+            {
+              path: '/links',
+              name: 'links',
+              icon: 'setting',
+              component: './links',
             },
 
             // {

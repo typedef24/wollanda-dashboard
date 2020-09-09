@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
-import { Col, Card, Tabs } from 'antd';
+import { Col, Card, Tabs, Row } from 'antd';
 import { DndProvider, DragSource, DropTarget } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { GridContent } from '@ant-design/pro-layout';
 import OverallComponent from './components/overall-component';
 import CardComponent from './components/card-component';
 import DepositComponent from './components/deposit-component';
+import AccountSpending from './components/account-spending';
+import ExpenseCategories from './components/expense-categories';
 
 const { TabPane } = Tabs;
 
@@ -166,6 +168,44 @@ class Reports extends Component {
                 </TabPane>
               </DraggableTabs>
             </Card>
+          </Col>
+          {/* Accounts spendings */}
+          <Col
+            xl={24}
+            lg={24}
+            md={24}
+            sm={24}
+            xs={24}
+            style={{
+              marginBottom: 24,
+            }}
+          >
+            <Row>
+            <Col
+            xl={12}
+            lg={24}
+            md={24}
+            sm={24}
+            xs={24}
+            style={{
+              marginBottom: 24,
+            }}
+          >
+           <AccountSpending />
+          </Col>
+          <Col 
+            xl={12}
+            lg={24}
+            md={24}
+            sm={24}
+            xs={24}
+            style={{
+              marginBottom: 24,
+            }}
+          >
+            <ExpenseCategories />
+          </Col>
+            </Row>
           </Col>
         </React.Fragment>
       </GridContent>

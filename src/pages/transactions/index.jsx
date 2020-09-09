@@ -115,7 +115,7 @@ class DraggableTabs extends React.Component {
     });
 
     return (
-      <DndProvider backend={HTML5Backend}>
+      <DndProvider backend={HTML5Backend} >
         <Tabs
           renderTabBar={this.renderTabBar}
           {...this.props}
@@ -163,10 +163,10 @@ class Transactions extends Component {
                     <CardTransactionDetails />
                   </TabPane>
                   <TabPane tab="Deposits" key="2">
-                    Content two
+                    <CardTransactionDetails />
                   </TabPane>
                   <TabPane tab="E-wallets" key="3">
-                    Content 3
+                    <CardTransactionDetails />
                   </TabPane>
                 </DraggableTabs>
               </Card>
