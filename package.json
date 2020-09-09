@@ -41,6 +41,7 @@
     "@types/numeral": "^0.0.28",
     "ant-design-pro": "^2.3.2",
     "antd": "^4.4.0",
+    "axios": "^0.20.0",
     "bizcharts": "^3.5.3-beta.0",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "classnames": "^2.2.6",
